@@ -26,7 +26,7 @@ class MainViewModel: ViewModel() {
         mainRepository.query(type)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
-                _stateLiveData.value = MainResult.InProgresst
+                _stateLiveData.value = MainResult.InProgress
             }
             .subscribe ({
                 _stateLiveData.value = MainResult.Success(it)
