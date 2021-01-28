@@ -23,14 +23,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         with(binding){
-            buttonBlue.setOnClickListener {
-                mainViewModel.requestViewColorType("#0011ff")
-            }
             buttonRed.setOnClickListener {
-                mainViewModel.requestViewColorType("#ff0000")
+                mainViewModel.requestViewColorType(MainViewModel.ColorType.RED)
+            }
+            buttonBlue.setOnClickListener {
+                mainViewModel.requestViewColorType(MainViewModel.ColorType.BLUE)
             }
             buttonYellow.setOnClickListener {
-                mainViewModel.requestViewColorType("#fffb00")
+                mainViewModel.requestViewColorType(MainViewModel.ColorType.YELLOW)
             }
         }
     }
