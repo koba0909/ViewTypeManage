@@ -18,16 +18,21 @@ class MainViewModel: ViewModel() {
 
     private val mainRepository = MainRepository()
 
-    private val _viewColorType = MutableLiveData<String>()
-    val viewColorTypeLiveData: LiveData<String>
-        get() = _viewColorType
+    private val _stateLiveData = MutableLiveData<MainResult>()
+    val stateLiveData: LiveData<MainResult>
+        get() = _stateLiveData
 
-    fun qrequestViewColorType(type: ColorType){
+    fun requestViewColorType(type: ColorType){
         mainRepository.query(type)
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { colorType ->
-                _viewColorType.value = colorType.colorCode
-            }.add()
+            .doOnSubscribe {
+                _stateLiveData.value = MainResult.InProgresst
+            }
+            .subscribe ({
+                _stateLiveData.value = MainResult.Success(it)
+            },{
+                _stateLiveData.value = MainResult.Error(it)
+            }).add()
     }
 
     override fun onCleared() {

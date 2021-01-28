@@ -4,7 +4,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.observe
 import com.koba.viewtypemanage.databinding.ActivityMainBinding
 
@@ -37,8 +37,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun initLiveDataObserve(){
         with(mainViewModel){
-            viewColorTypeLiveData.observe(this@MainActivity) { color ->
-                binding.viewTarget.setBackgroundColor(Color.parseColor(color))
+            stateLiveData.observe(this@MainActivity) {
+                when(it) {
+                    is MainResult.Success -> {
+                        binding.viewTarget.setBackgroundColor(Color.parseColor(it.data.colorCode))
+                    }
+                    is MainResult.Error -> {
+                        println("Error : ${it.exception}")
+                    }
+                    is MainResult.InProgress -> {
+                        println("In progress")
+                    }
+                }
             }
         }
     }
