@@ -1,4 +1,4 @@
-package com.koba.viewtypemanage
+package com.koba.viewtypemanage.data
 
 sealed class MainResult{
     data class Success(val data: Item): MainResult()

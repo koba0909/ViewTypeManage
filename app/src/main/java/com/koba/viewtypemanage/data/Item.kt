@@ -1,4 +1,4 @@
-package com.koba.viewtypemanage
+package com.koba.viewtypemanage.data
 
 data class Item(
     val title: String,

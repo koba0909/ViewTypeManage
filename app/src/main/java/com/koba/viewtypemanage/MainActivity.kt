@@ -4,8 +4,9 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.observe
+import com.koba.viewtypemanage.data.ColorType
+import com.koba.viewtypemanage.data.MainResult
 import com.koba.viewtypemanage.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,13 +25,13 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         with(binding){
             buttonRed.setOnClickListener {
-                mainViewModel.requestViewColorType(MainViewModel.ColorType.RED)
+                mainViewModel.requestViewColorType(ColorType.RED)
             }
             buttonBlue.setOnClickListener {
-                mainViewModel.requestViewColorType(MainViewModel.ColorType.BLUE)
+                mainViewModel.requestViewColorType(ColorType.BLUE)
             }
             buttonYellow.setOnClickListener {
-                mainViewModel.requestViewColorType(MainViewModel.ColorType.YELLOW)
+                mainViewModel.requestViewColorType(ColorType.YELLOW)
             }
         }
     }

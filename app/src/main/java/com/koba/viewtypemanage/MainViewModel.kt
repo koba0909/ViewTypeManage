@@ -3,17 +3,13 @@ package com.koba.viewtypemanage
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.koba.viewtypemanage.data.ColorType
+import com.koba.viewtypemanage.data.MainResult
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 class MainViewModel: ViewModel() {
-    enum class ColorType (val title: String, val colorCode: String){
-        RED("RED", "#ff0000"),
-        BLUE("BLUE", "#0011ff"),
-        YELLOW("YELLOW", "#fffb00")
-    }
-
     private val compositeDisposable = CompositeDisposable()
 
     private val mainRepository = MainRepository()
