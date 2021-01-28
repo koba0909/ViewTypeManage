@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel: ViewModel() {
-    enum class ColorType {
-        RED, BLUE, YELLOW
+    enum class ColorType (val title: String, val colorCode: String){
+        RED("RED", "#ff0000"),
+        BLUE("BLUE", "#0011ff"),
+        YELLOW("YELLOW", "#fffb00")
     }
 
     private var _viewColorType = MutableLiveData<String>()
@@ -14,10 +16,6 @@ class MainViewModel: ViewModel() {
         get() = _viewColorType
 
     fun requestViewColorType(type: ColorType){
-        _viewColorType.value = when(type){
-            ColorType.RED -> "#ff0000"
-            ColorType.BLUE -> "#0011ff"
-            ColorType.YELLOW -> "#fffb00"
-        }
+        _viewColorType.value = type.colorCode
     }
 }
